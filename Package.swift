@@ -1,12 +1,12 @@
+// swift-tools-version:5.1
+
 //
-//  Package.swift
+//  RealmCodable.swift
 //  RealmCoder
 //
 //  Created by Jay Lyerly on 10/9/19.
 //  Copyright © 2019 Oak City Labs. All rights reserved.
 //
-
-// swift-tools-version:5.1
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -25,7 +25,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/realm/SwiftLint.git", from: "0.31.0"),
+        // .package(url: "https://github.com/realm/SwiftLint.git", from: "0.31.0"),
         .package(
             url: "https://github.com/realm/realm-cocoa.git",
             from: "3.17.3"
