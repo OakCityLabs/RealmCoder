@@ -5,6 +5,7 @@ public func allTests() -> [XCTestCaseEntry] {
     return [
         testCase(RealmCoderTests.allTests),
         testCase(UserTests.allTests),
+        testCase(NestedUserTests.allTests),
     ]
 }
 #endif

@@ -9,7 +9,7 @@ import XCTest
 @testable import RealmCoder
 import RealmSwift
 
-final class BasicUserTests: XCTestCase {
+final class UserTests: XCTestCase {
     var coder: RealmCoder!
     var jsonData: Data!
     
@@ -58,11 +58,23 @@ final class BasicUserTests: XCTestCase {
         
         XCTAssertEqual(users.count, 3)
         
-//        XCTAssertEqual(user.firstName, "Barry")
-//        XCTAssertEqual(user.lastName, "Allen")
-//        XCTAssertEqual(user.username, "speedy@starlabs.com")
-//        XCTAssertEqual(user.rank, 4)
-//        XCTAssertEqual(user.objId, "fec224c1-d529-4af7-8a0f-c591e70d5599")
+        XCTAssertEqual(users[0].firstName, "Bruce")
+        XCTAssertEqual(users[0].lastName, "Wayne")
+        XCTAssertEqual(users[0].username, "bats@waynetech.com")
+        XCTAssertEqual(users[0].rank, 1)
+        XCTAssertEqual(users[0].objId, "843eb4e2-babf-4fac-86bd-1bce7dc3f7a5")
+        
+        XCTAssertEqual(users[1].firstName, "Hal")
+        XCTAssertEqual(users[1].lastName, "Jordan")
+        XCTAssertEqual(users[1].username, "ace@ferrisaviation.com")
+        XCTAssertEqual(users[1].rank, 2)
+        XCTAssertEqual(users[1].objId, "559165df-c246-4c39-990f-933f89088bb8")
+        
+        XCTAssertEqual(users[2].firstName, "Clark")
+        XCTAssertEqual(users[2].lastName, "Kent")
+        XCTAssertEqual(users[2].username, "bluetights@dailyplanet.com")
+        XCTAssertEqual(users[2].rank, 3)
+        XCTAssertEqual(users[2].objId, "9e96af36-e672-4b9a-a9d8-bc291022e7c3")
     }
 
     static var allTests = [

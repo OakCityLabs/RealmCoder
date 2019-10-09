@@ -12,6 +12,8 @@ import RealmSwift
 public protocol RealmCodable {
     static var realmCodableKeys: [String: String] { get }
     static var realmCodableIgnoredAttributes: [String] { get }
+    static var realmObjectEnvelope: String? { get }
+    static var realmListEnvelope: String? { get }
 }
 
 @objc
@@ -36,24 +38,27 @@ extension Object: RealmCodable {
     open class var realmCodableRawJsonSubstrings: [String] {
         return []
     }
-}
-
-public protocol RealmResponseEnveloped {
-    var envelope: String? { get }
-//    var listEnvelope: String? { get }
-}
-
-extension Object: RealmResponseEnveloped {
-    open var envelope: String? {
+    
+    // The object envelope is the key in a response JSON that wraps the
+    // object data.  For example, a User object might have an envelope of
+    // "user" as in this JSON:
+    //
+    //    {
+    //      "user": {
+    //        "first_name": ...,
+    //        "last_name": ...,
+    //        ...
+    //      }
+    //    }
+    //
+    // A value of `nil` means no envelope.
+    open class var realmObjectEnvelope: String? {
         return nil
     }
     
-//    var listEnvelope: String? {
-//        return nil
-//    }
+    // Similar to the realmObjectEnvelope, this value wraps a list of JSON
+    // objects.  A value of `nil` means no envelope.
+    open class var realmListEnvelope: String? {
+        return nil
+    }
 }
-
-//protocol ResourcePageable {}   // Resource can be paged
-//protocol ElementPageable {}    // Element where an Array can be paged
-//
-//extension Array: ResourcePageable where Element: ElementPageable {}

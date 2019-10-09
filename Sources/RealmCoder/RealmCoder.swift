@@ -9,6 +9,7 @@ public enum RealmCoderError: Error {
     case nonArrayTopLevelObject
     case noKeysFound
     case primaryKeyNotFound
+    case envelopeNotFound
 }
 
 private let iso8601Full: DateFormatter = {
@@ -39,12 +40,26 @@ public class RealmCoder {
 // MARK: - Decoder
 public extension RealmCoder {
     func decodeArray<T: Object>(_ type: T.Type, from data: Data) throws -> [T] {
-        guard let jsonArray = try JSONSerialization.jsonObject(with: data) as? [Json] else {
-            throw RealmCoderError.nonArrayTopLevelObject
-        }
+        let jsonArray: [Json]
         
+        if let envelope = type.realmListEnvelope {
+            guard let json = try JSONSerialization.jsonObject(with: data) as? Json else {
+                throw RealmCoderError.nonDictionaryTopLevelObject
+            }
+
+            guard let topDict = json as? [String: [Json]], let jArray = topDict[envelope] else {
+                throw RealmCoderError.envelopeNotFound
+            }
+            jsonArray = jArray
+        } else {
+            guard let jArray = try JSONSerialization.jsonObject(with: data) as? [Json] else {
+                throw RealmCoderError.nonArrayTopLevelObject
+            }
+            jsonArray = jArray
+        }
+    
         let objArray: [T] = try jsonArray.map { json in
-            try decode(type, from: json)
+            try decode(type, from: json, topLevel: false)
         }
         
         return objArray
@@ -58,7 +73,20 @@ public extension RealmCoder {
         return try decode(type, from: json)
     }
     
-    func decode<T: Object>(_ type: T.Type, from json: [String: Any]) throws -> T {
+    func decode<T: Object>(_ type: T.Type, from inputJson: [String: Any], topLevel: Bool = true) throws -> T {
+        
+        let json: Json
+        
+        // Check the envelope but only if we're at the top level
+        if let envelope = T.realmObjectEnvelope, topLevel {
+            if let input = inputJson as? [String: Json] {
+                json = input[envelope] ?? [:]
+            } else {
+                json = [:]
+            }
+        } else {
+            json = inputJson
+        }
         
         let moduleName = String(String(reflecting: type).split(separator: ".").first ?? "")
         let cDict = try creationDict(fromJson: json, forType: type, inModule: moduleName)

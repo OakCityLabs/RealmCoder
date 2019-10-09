@@ -1,22 +1,22 @@
 {
   "users": [
     {
-      "firstName": "Bruce",
-      "lastName": "Wayne",
+      "first_name": "Bruce",
+      "last_name": "Wayne",
       "username": "bats@waynetech.com",
       "rank": 1,
       "id": "843eb4e2-babf-4fac-86bd-1bce7dc3f7a5"
     },
     {
-      "firstName": "Hal",
-      "lastName": "Jordan",
+      "first_name": "Hal",
+      "last_name": "Jordan",
       "username": "ace@ferrisaviation.com",
       "rank": 2,
       "id": "559165df-c246-4c39-990f-933f89088bb8"
     },
     {
-      "firstName": "Clark",
-      "lastName": "Kent",
+      "first_name": "Clark",
+      "last_name": "Kent",
       "username": "bluetights@dailyplanet.com",
       "rank": 3,
       "id": "9e96af36-e672-4b9a-a9d8-bc291022e7c3"
