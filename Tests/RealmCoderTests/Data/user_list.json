@@ -1,23 +1,23 @@
 [
-    {
-        "first_name": "Bruce",
-        "last_name": "Wayne",
-        "username": "bats@waynetech.com",
-        "rank": 1,
-        "id": "843eb4e2-babf-4fac-86bd-1bce7dc3f7a5"
-    },
-    {
-        "first_name": "Hal",
-        "last_name": "Jordan",
-        "username": "ace@ferrisaviation.com",
-        "rank": 2,
-        "id": "559165df-c246-4c39-990f-933f89088bb8"
-    },
-    {
-        "first_name": "Clark",
-        "last_name": "Kent",
-        "username": "bluetights@dailyplanet.com",
-        "rank": 3,
-        "id": "9e96af36-e672-4b9a-a9d8-bc291022e7c3"
-    }
+  {
+    "first_name" : "Bruce",
+    "id" : "843eb4e2-babf-4fac-86bd-1bce7dc3f7a5",
+    "last_name" : "Wayne",
+    "rank" : 1,
+    "username" : "bats@waynetech.com"
+  },
+  {
+    "first_name" : "Hal",
+    "id" : "559165df-c246-4c39-990f-933f89088bb8",
+    "last_name" : "Jordan",
+    "rank" : 2,
+    "username" : "ace@ferrisaviation.com"
+  },
+  {
+    "first_name" : "Clark",
+    "id" : "9e96af36-e672-4b9a-a9d8-bc291022e7c3",
+    "last_name" : "Kent",
+    "rank" : 3,
+    "username" : "bluetights@dailyplanet.com"
+  }
 ]

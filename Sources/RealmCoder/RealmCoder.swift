@@ -224,6 +224,18 @@ public extension RealmCoder {
 
 // MARK: - Encoder
 public extension RealmCoder {
+    
+    func encodeArray<T: Object>(_ objArray: [T]) throws -> Data? {
+        guard let jObj = objArray.json(withRealmCoder: self) else {
+            return nil
+        }
+        
+        let data = try JSONSerialization.data(withJSONObject: jObj,
+                                              options: [.prettyPrinted, .sortedKeys])
+        
+        return data
+    }
+
     func encode<T: Object>(_ object: T) throws -> Data? {
         
         guard let jObj = try object.json(withRealmCoder: self) else {
@@ -247,7 +259,14 @@ extension List: RealmJsonEncodable where Element: Object {
     func json(withRealmCoder coder: RealmCoder) -> Any? {
         return Array(self.compactMap { try? $0.json(withRealmCoder: coder) })
     }
+}
+
+
+extension Array: RealmJsonEncodable where Element: Object {
     
+    func json(withRealmCoder coder: RealmCoder) -> Any? {
+        return self.compactMap { try? $0.json(withRealmCoder: coder) }
+    }
 }
 
 extension Object: RealmJsonEncodable {

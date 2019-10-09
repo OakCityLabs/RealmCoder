@@ -13,6 +13,7 @@ import RealmSwift
 public protocol RealmCodable {
     static var realmCodableKeys: [String: String] { get }
     static var realmCodableIgnoredAttributes: [String] { get }
+    static var realmCodableRawJsonSubstrings: [String] { get }
     static var realmObjectEnvelope: String? { get }
     static var realmListEnvelope: String? { get }
 }
