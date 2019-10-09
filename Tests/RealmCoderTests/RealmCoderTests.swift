@@ -6,8 +6,8 @@
 //  Copyright © 2019 Oak City Labs. All rights reserved.
 //
 
-import XCTest
 @testable import RealmCoder
+import XCTest
 
 final class RealmCoderTests: XCTestCase {
     func testExample() {
@@ -18,6 +18,6 @@ final class RealmCoderTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testExample", testExample),
+        ("testExample", testExample)
     ]
 }

@@ -28,7 +28,6 @@ func data(fromFile filename: String) -> Data? {
     return try? Data(contentsOf: url)
 }
 
-
 /// Find a URL to a file in the Data directory.
 /// - Parameter filename: Filename of target file with respect to the Data directory
 func url(toFile filename: String) -> URL? {

@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import RealmSwift
 import RealmCoder
+import RealmSwift
 
 class User: Object {
     

@@ -80,6 +80,6 @@ final class UserTests: XCTestCase {
 
     static var allTests = [
         ("testDecodeUserJson", testDecodeUserJson),
-        ("testDecodeUserListJson", testDecodeUserListJson),
+        ("testDecodeUserListJson", testDecodeUserListJson)
     ]
 }

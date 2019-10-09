@@ -6,9 +6,9 @@
 //  Copyright © 2019 Oak City Labs. All rights reserved.
 //
 
-import XCTest
 @testable import RealmCoder
 import RealmSwift
+import XCTest
 
 final class NestedUserTests: XCTestCase {
     var coder: RealmCoder!
@@ -80,6 +80,6 @@ final class NestedUserTests: XCTestCase {
 
     static var allTests = [
         ("testDecodeUserJson", testDecodeUserJson),
-        ("testDecodeUserListJson", testDecodeUserListJson),
+        ("testDecodeUserListJson", testDecodeUserListJson)
     ]
 }

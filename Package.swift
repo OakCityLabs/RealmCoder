@@ -20,7 +20,7 @@ let package = Package(
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
             name: "RealmCoder",
-            targets: ["RealmCoder"]),
+            targets: ["RealmCoder"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -29,17 +29,18 @@ let package = Package(
         .package(
             url: "https://github.com/realm/realm-cocoa.git",
             from: "3.17.3"
-        ),
+        )
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages which this package depends on.
+        // Targets can depend on other targets in this package, and on products in packages which
+        // this package depends on.
         .target(
             name: "RealmCoder",
             dependencies: ["RealmSwift"]),
         .testTarget(
             name: "RealmCoderTests",
-            dependencies: ["RealmCoder"]),
+            dependencies: ["RealmCoder"])
     ],
     swiftLanguageVersions: [.version("5")]
 )
