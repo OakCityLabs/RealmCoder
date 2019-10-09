@@ -79,11 +79,10 @@ public extension RealmCoder {
         
         // Check the envelope but only if we're at the top level
         if let envelope = T.realmObjectEnvelope, topLevel {
-            if let input = inputJson as? [String: Json] {
-                json = input[envelope] ?? [:]
-            } else {
-                json = [:]
+            guard let input = inputJson as? [String: Json], let wrappedJson = input[envelope] else {
+                throw RealmCoderError.envelopeNotFound
             }
+            json = wrappedJson
         } else {
             json = inputJson
         }
