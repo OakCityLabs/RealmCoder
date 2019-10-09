@@ -1,0 +1,59 @@
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Foobar
+
+disabled_rules:
+  - trailing_whitespace
+  - todo
+
+opt_in_rules:
+  - attributes
+  - closure_end_indentation
+  - closure_spacing                         
+  - conditional_returns_on_newline          
+  - empty_count                             
+  - explicit_init                           
+  - fatal_error_message                     
+  - file_header                             
+  #- first_where                             # too many false positives on realm calls that don't have a first_where option
+  - force_unwrapping                        
+  - implicitly_unwrapped_optional           
+  - multiline_parameters                    
+  - nimble_operator                         
+  - number_separator                        
+  #- object_literal                          
+  - operator_usage_whitespace               
+  - overridden_super_call                   
+  - prohibited_super_call                   
+  - redundant_nil_coalescing                
+  - sorted_imports                          
+  - switch_case_on_newline                  
+  - trailing_closure
+  - vertical_parameter_alignment_on_call    
+
+#custom config
+type_name:
+  min_length: 
+    warning: 3 
+    error: 2 
+  max_length: 
+    warning: 50
+    error: 75
+identifier_name:
+  min_length:
+    warning: 3
+    error: 2
+  max_length:
+    warning: 50
+    error: 75
+
+file_header:
+  required_pattern: |
+                    \/\/
+                    \/\/  .*?\.swift
+                    \/\/  RealmCoder
+                    \/\/
+                    \/\/  Created by .*? on \d{1,2}\/\d{1,2}\/\d{2}\.
+                    \/\/  Copyright © \d{4} Oak City Labs\. All rights reserved\.
+                    \/\/
+
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)
