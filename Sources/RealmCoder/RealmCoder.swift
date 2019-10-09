@@ -91,7 +91,7 @@ public extension RealmCoder {
         let cDict = try creationDict(fromJson: json, forType: type, inModule: moduleName)
         
         realm.beginWrite()
-        let shouldUpdate = (T.primaryKey() != nil)
+        let shouldUpdate: Realm.UpdatePolicy = (T.primaryKey() != nil) ? .modified : .error
         let obj = realm.create(type, value: cDict, update: shouldUpdate)
         try realm.commitWrite()
         
