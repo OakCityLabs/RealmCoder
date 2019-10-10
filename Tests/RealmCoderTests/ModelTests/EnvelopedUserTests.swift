@@ -1,5 +1,5 @@
 //
-//  NestedUserTests.swift
+//  EnvelopedUserTests.swift
 //  RealmCoderTests
 //
 //  Created by Jay Lyerly on 10/9/19.
@@ -10,7 +10,7 @@
 import RealmSwift
 import XCTest
 
-final class NestedUserTests: XCTestCase {
+final class EnvelopedUserTests: XCTestCase {
     var coder: RealmCoder!
     var jsonData: Data!
     
@@ -42,7 +42,7 @@ final class NestedUserTests: XCTestCase {
 
         loadJson(fromFile: "user_envelope.json")
         
-        let user = try coder.decode(NestedUser.self, from: jsonData)
+        let user = try coder.decode(EnvelopedUser.self, from: jsonData)
         
         XCTAssertEqual(user.firstName, "Barry")
         XCTAssertEqual(user.lastName, "Allen")
@@ -55,7 +55,7 @@ final class NestedUserTests: XCTestCase {
 
         loadJson(fromFile: "user_list_envelope.json")
         
-        let users = try coder.decodeArray(NestedUser.self, from: jsonData)
+        let users = try coder.decodeArray(EnvelopedUser.self, from: jsonData)
         
         XCTAssertEqual(users.count, 3)
         
@@ -82,7 +82,7 @@ final class NestedUserTests: XCTestCase {
         
         loadJson(fromFile: "user_envelope.json")
         
-        let user = NestedUser()
+        let user = EnvelopedUser()
         user.firstName = "Barry"
         user.lastName = "Allen"
         user.username = "speedy@starlabs.com"
@@ -108,7 +108,7 @@ final class NestedUserTests: XCTestCase {
             
             loadJson(fromFile: "user.json")
             
-            let user = NestedUser()
+            let user = EnvelopedUser()
             user.firstName = "Barry"
             user.lastName = "Allen"
             user.username = "speedy@starlabs.com"
@@ -130,22 +130,22 @@ final class NestedUserTests: XCTestCase {
             XCTAssertEqual(uString, jString)
         }
     
-    func userList() -> [NestedUser] {
-        let user0 = NestedUser()
+    func userList() -> [EnvelopedUser] {
+        let user0 = EnvelopedUser()
         user0.firstName = "Bruce"
         user0.lastName = "Wayne"
         user0.username = "bats@waynetech.com"
         user0.rank = 1
         user0.objId = "843eb4e2-babf-4fac-86bd-1bce7dc3f7a5"
         
-        let user1 = NestedUser()
+        let user1 = EnvelopedUser()
         user1.firstName = "Hal"
         user1.lastName = "Jordan"
         user1.username = "ace@ferrisaviation.com"
         user1.rank = 2
         user1.objId = "559165df-c246-4c39-990f-933f89088bb8"
         
-        let user2 = NestedUser()
+        let user2 = EnvelopedUser()
         user2.firstName = "Clark"
         user2.lastName = "Kent"
         user2.username = "bluetights@dailyplanet.com"

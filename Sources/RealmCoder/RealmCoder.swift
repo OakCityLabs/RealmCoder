@@ -237,7 +237,6 @@ public extension RealmCoder {
 
             return [envelope: jObj]
         }()
-
         
         let data = try JSONSerialization.data(withJSONObject: wrappedObj,
                                               options: [.prettyPrinted, .sortedKeys])
@@ -277,7 +276,6 @@ extension List: RealmJsonEncodable where Element: Object {
         return Array(self.compactMap { try? $0.json(withRealmCoder: coder) })
     }
 }
-
 
 extension Array: RealmJsonEncodable where Element: Object {
     

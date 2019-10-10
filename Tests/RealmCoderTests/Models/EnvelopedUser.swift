@@ -1,5 +1,5 @@
 //
-//  NestedUser.swift
+//  EnvelopedUser.swift
 //  RealmCoderTests
 //
 //  Created by Jay Lyerly on 10/9/19.
@@ -10,7 +10,7 @@ import Foundation
 import RealmCoder
 import RealmSwift
 
-class NestedUser: User {
+class EnvelopedUser: User {
 
     override class var realmObjectEnvelope: String? {
         return "user"
