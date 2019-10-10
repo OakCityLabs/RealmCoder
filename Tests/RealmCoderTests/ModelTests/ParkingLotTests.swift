@@ -10,6 +10,12 @@ import RealmCoder
 import RealmSwift
 import XCTest
 
+/// Test Notes:
+///     ParkingLotTests excercises these specific aspects of the RealmCoder
+///     - Nested data structures -- a parking lot has a list of cars and motorcycles, defined in the JSON
+///     - Compatibility with models which are subclassed from another model.
+///
+
 final class ParkingLotTests: XCTestCase {
     var coder: RealmCoder!
     var jsonData: Data!

@@ -1,0 +1,16 @@
+{
+    "area": 71435.715,
+    "centroid": {
+        "coordinates": [-2, 52],
+        "crs": {
+            "properties": {
+                "name": "EPSG:4326"
+            },
+            "type": "name"
+        },
+        "type": "Point"
+    },
+    "name": "Stardew Valley",
+    "updated_at": "Fri, 18 May 2018 14:53:37 GMT",
+    "uuid": "ae0ab025-6471-46b1-b008-b01ba95556bf"
+}

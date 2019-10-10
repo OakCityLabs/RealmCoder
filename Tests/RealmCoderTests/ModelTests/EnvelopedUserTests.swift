@@ -10,6 +10,12 @@ import RealmCoder
 import RealmSwift
 import XCTest
 
+/// Test Notes:
+///     EnvelopedUserTests excercises these specific aspects of the RealmCoder
+///     - Basic encoding and decoding of models with JSON envelopes
+///     - `EnvelopedUser` model does have a primary key
+///
+
 final class EnvelopedUserTests: XCTestCase {
     var coder: RealmCoder!
     var jsonData: Data!

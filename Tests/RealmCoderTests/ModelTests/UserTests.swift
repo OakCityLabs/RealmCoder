@@ -10,6 +10,12 @@ import RealmCoder
 import RealmSwift
 import XCTest
 
+/// Test Notes:
+///     UserTests excercises these specific aspects of the RealmCoder
+///     - Basic encoding and decoding of models
+///     - `User` model does not have a primary key
+///
+
 final class UserTests: XCTestCase {
     var coder: RealmCoder!
     var jsonData: Data!

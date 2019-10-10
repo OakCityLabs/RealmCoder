@@ -13,7 +13,10 @@ public func allTests() -> [XCTestCaseEntry] {
     return [
         testCase(RealmCoderTests.allTests),
         testCase(UserTests.allTests),
-        testCase(EnvelopedUserTests.allTests)
+        testCase(EnvelopedUserTests.allTests),
+        testCase(MuppetTests.allTests),
+        testCase(ParkingLotTests.allTests),
+        testCase(FarmTests.allTests)
     ]
 }
 #endif
