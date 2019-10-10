@@ -93,8 +93,10 @@ final class UserTests: XCTestCase {
         
         XCTAssertNotNil(uData)
         
-        let uString = String(data: uData!, encoding: .utf8)
-        let jString = String(data: jsonData!, encoding: .utf8)
+        let uString = String(data: uData!, encoding: .utf8)?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        let jString = String(data: jsonData!, encoding: .utf8)?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
 
 //        try jString?.write(toFile: "/tmp/ref.json", atomically: true, encoding: .utf8)
 //        try uString?.write(toFile: "/tmp/encoded.json", atomically: true, encoding: .utf8)
@@ -132,9 +134,11 @@ final class UserTests: XCTestCase {
         
         XCTAssertNotNil(uData)
         
-        let uString = String(data: uData!, encoding: .utf8)
-        let jString = String(data: jsonData!, encoding: .utf8)
-        
+        let uString = String(data: uData!, encoding: .utf8)?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        let jString = String(data: jsonData!, encoding: .utf8)?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
 //        try jString?.write(toFile: "/tmp/ref.json", atomically: true, encoding: .utf8)
 //        try uString?.write(toFile: "/tmp/encoded.json", atomically: true, encoding: .utf8)
         
@@ -144,6 +148,7 @@ final class UserTests: XCTestCase {
     static var allTests = [
         ("testDecodeUserJson", testDecodeUserJson),
         ("testDecodeUserListJson", testDecodeUserListJson),
-        ("testEncodeUserJson", testEncodeUserJson)
+        ("testEncodeUserJson", testEncodeUserJson),
+        ("testEncodeUserListJson", testEncodeUserListJson)
     ]
 }

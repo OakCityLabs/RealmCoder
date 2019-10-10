@@ -1,9 +1,9 @@
 {
-  "user": {
-    "first_name": "Barry",
-    "last_name": "Allen",
-    "username": "speedy@starlabs.com",
-    "rank": 4,
-    "id": "fec224c1-d529-4af7-8a0f-c591e70d5599"
+  "user" : {
+    "first_name" : "Barry",
+    "id" : "fec224c1-d529-4af7-8a0f-c591e70d5599",
+    "last_name" : "Allen",
+    "rank" : 4,
+    "username" : "speedy@starlabs.com"
   }
 }

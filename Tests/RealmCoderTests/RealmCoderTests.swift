@@ -14,7 +14,7 @@ final class RealmCoderTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTFail("Add some tests!")
+//        XCTFail("Add some tests!")
     }
 
     static var allTests = [

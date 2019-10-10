@@ -225,26 +225,43 @@ public extension RealmCoder {
 // MARK: - Encoder
 public extension RealmCoder {
     
-    func encodeArray<T: Object>(_ objArray: [T]) throws -> Data? {
+    func encodeArray<T: Object>(_ objArray: [T], useEnvelope: Bool = false) throws -> Data? {
         guard let jObj = objArray.json(withRealmCoder: self) else {
             return nil
         }
         
-        let data = try JSONSerialization.data(withJSONObject: jObj,
+        let wrappedObj: Any = {
+            guard let envelope = T.realmListEnvelope, useEnvelope else {
+                return jObj
+            }
+
+            return [envelope: jObj]
+        }()
+
+        
+        let data = try JSONSerialization.data(withJSONObject: wrappedObj,
                                               options: [.prettyPrinted, .sortedKeys])
         
         return data
     }
 
-    func encode<T: Object>(_ object: T) throws -> Data? {
+    func encode<T: Object>(_ object: T, useEnvelope: Bool = false) throws -> Data? {
         
         guard let jObj = try object.json(withRealmCoder: self) else {
             return nil
         }
         
-        let data = try JSONSerialization.data(withJSONObject: jObj,
-                                              options: [.prettyPrinted, .sortedKeys])
+        let wrappedObj: Any = {
+            guard let envelope = T.realmObjectEnvelope, useEnvelope else {
+                return jObj
+            }
+
+            return [envelope: jObj]
+        }()
         
+        let data = try JSONSerialization.data(withJSONObject: wrappedObj,
+                                              options: [.prettyPrinted, .sortedKeys])
+
         return data
     }
     
