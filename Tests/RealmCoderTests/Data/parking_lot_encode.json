@@ -1,0 +1,28 @@
+{
+  "cars" : [
+    {
+      "door_count" : 3,
+      "id" : "woddjelsadfj",
+      "make" : "Volkswagen",
+      "model" : "R32",
+      "wheel_count" : 4
+    },
+    {
+      "door_count" : 17,
+      "id" : "zxc.vqwie",
+      "make" : "MINI",
+      "model" : "Cooper",
+      "wheel_count" : 8
+    }
+  ],
+  "id" : "8675309",
+  "motorcycles" : [
+    {
+      "id" : "930303-38383",
+      "make" : "Harley Davidson",
+      "model" : "Shovelhead",
+      "raw_type" : "street"
+    }
+  ],
+  "name" : "upside down"
+}

@@ -1,0 +1,43 @@
+{
+  "parking_lot" : {
+    "id": "0104-47-2394",
+    "name": "Lot 1",
+    "cars": [
+      {
+        "id": "qwfqwf",
+        "make": "chevy",
+        "model": "cavalier",
+        "door_count": 5,
+        "wheel_count": 4
+      },
+      {
+        "id": "zfdfaf",
+        "make": "honda",
+        "model": "del Sol",
+        "door_count": 2,
+        "wheel_count": 4
+      },
+      {
+        "id": "poupouii",
+        "make": "reliant",
+        "model": "robin",
+        "door_count": 2,
+        "wheel_count": 3
+      }
+    ],
+    "motorcycles": [
+      {
+        "id": "oiyoiuy",
+        "make": "kawasaki",
+        "model": "howitzer",
+        "raw_type": "dirt"
+      },
+      {
+        "id": "hlglkjh",
+        "make": "honda",
+        "model": "goldwing",
+        "raw_type": "cruiser"
+      }
+    ]
+  }
+}

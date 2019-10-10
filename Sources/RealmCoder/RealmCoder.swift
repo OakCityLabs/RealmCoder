@@ -20,7 +20,7 @@ public enum RealmCoderError: Error {
     case envelopeNotFound
 }
 
-private let iso8601Full: DateFormatter = {
+public let iso8601Full: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
     formatter.calendar = Calendar(identifier: .iso8601)
@@ -38,7 +38,7 @@ public class RealmCoder {
     let realm: Realm
     let dateFormatter: DateFormatter
     
-    init(realm: Realm, dateFormatter: DateFormatter = iso8601Full) {
+    public init(realm: Realm, dateFormatter: DateFormatter = iso8601Full) {
         self.realm = realm
         self.dateFormatter = dateFormatter
     }

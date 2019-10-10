@@ -6,7 +6,7 @@
 //  Copyright © 2019 Oak City Labs. All rights reserved.
 //
 
-@testable import RealmCoder
+import RealmCoder
 import RealmSwift
 import XCTest
 
@@ -169,8 +169,8 @@ final class EnvelopedUserTests: XCTestCase {
         let jString = String(data: jsonData!, encoding: .utf8)?
             .trimmingCharacters(in: .whitespacesAndNewlines)
 
-        try jString?.write(toFile: "/tmp/ref.json", atomically: true, encoding: .utf8)
-        try uString?.write(toFile: "/tmp/encoded.json", atomically: true, encoding: .utf8)
+//        try jString?.write(toFile: "/tmp/ref.json", atomically: true, encoding: .utf8)
+//        try uString?.write(toFile: "/tmp/encoded.json", atomically: true, encoding: .utf8)
         
         XCTAssertEqual(uString, jString)
     }
@@ -189,8 +189,8 @@ final class EnvelopedUserTests: XCTestCase {
         let jString = String(data: jsonData!, encoding: .utf8)?
             .trimmingCharacters(in: .whitespacesAndNewlines)
 
-        try jString?.write(toFile: "/tmp/ref.json", atomically: true, encoding: .utf8)
-        try uString?.write(toFile: "/tmp/encoded.json", atomically: true, encoding: .utf8)
+//        try jString?.write(toFile: "/tmp/ref.json", atomically: true, encoding: .utf8)
+//        try uString?.write(toFile: "/tmp/encoded.json", atomically: true, encoding: .utf8)
         
         XCTAssertEqual(uString, jString)
     }
