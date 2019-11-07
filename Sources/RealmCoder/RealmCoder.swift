@@ -54,10 +54,18 @@ public extension RealmCoder {
             guard let json = try JSONSerialization.jsonObject(with: data) as? Json else {
                 throw RealmCoderError.nonDictionaryTopLevelObject
             }
-
-            guard let topDict = json as? [String: [Json]], let jArray = topDict[envelope] else {
+            guard json.keys.contains(envelope) else {
                 throw RealmCoderError.envelopeNotFound
             }
+            
+            // filter out the bits we don't understand (that are not [Json])
+            let safeJson = json.filter { (key, value) -> Bool in
+                return value is [Json]
+            }
+            guard let topDict = safeJson as? [String: [Json]], let jArray = topDict[envelope] else {
+                throw RealmCoderError.noKeysFound
+            }
+
             jsonArray = jArray
         } else {
             guard let jArray = try JSONSerialization.jsonObject(with: data) as? [Json] else {
