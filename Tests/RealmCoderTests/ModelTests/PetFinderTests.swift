@@ -59,6 +59,32 @@ final class PetFinderTests: XCTestCase {
         }
     }
     
+    func testDecodeAnimalPhotosJson() throws {
+
+        loadJson(fromFile: "pf_animals.json")
+        
+        do {
+            let animals = try coder.decodeArray(Animal.self, from: jsonData)
+            XCTAssertEqual(animals.count, 4)
+            XCTAssertEqual(animals[0].photos.count, 0)
+            XCTAssertEqual(animals[1].photos.count, 1)
+            XCTAssertEqual(animals[2].photos.count, 1)
+            XCTAssertEqual(animals[3].photos.count, 1)
+            
+            let photos = animals[1].photos
+            XCTAssertEqual(photos[0].small,
+                           "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/46492679/1/?bust=1573052354&width=100")
+            XCTAssertEqual(photos[0].medium,
+                           "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/46492679/1/?bust=1573052354&width=300")
+            XCTAssertEqual(photos[0].large,
+                           "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/46492679/1/?bust=1573052354&width=600")
+            XCTAssertEqual(photos[0].full,
+                           "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/46492679/1/?bust=1573052354")
+
+        } catch {
+            XCTFail("Failed to decode with error: \(error).")
+        }
+    }
     
     static var allTests = [
         ("testDecodeAnimalsJson", testDecodeAnimalsJson)

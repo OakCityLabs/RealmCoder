@@ -59,7 +59,7 @@ public extension RealmCoder {
             }
             
             // filter out the bits we don't understand (that are not [Json])
-            let safeJson = json.filter { (key, value) -> Bool in
+            let safeJson = json.filter { (_, value) -> Bool in
                 return value is [Json]
             }
             guard let topDict = safeJson as? [String: [Json]], let jArray = topDict[envelope] else {

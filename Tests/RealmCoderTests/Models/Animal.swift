@@ -16,6 +16,8 @@ class Animal: Object {
     @objc dynamic var name: String = ""
     @objc dynamic var type: String = ""
 
+    var photos = List<Photo>()
+
     override class var realmCodableKeys: [String: String] {
         return ["objId": "id"]
     }
@@ -28,5 +30,12 @@ class Animal: Object {
     override class func primaryKey() -> String? {
         return "objId"
     }
+    
+}
 
+class Photo: Object {
+    @objc dynamic var small: String?
+    @objc dynamic var medium: String?
+    @objc dynamic var large: String?
+    @objc dynamic var full: String?
 }
