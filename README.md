@@ -1,11 +1,21 @@
 # RealmCoder
 JSON Encoder / Decoder for Realm objects
 
-## Description
+## TL;DR
 
-A RealmCoder objects allows you to easily decode a Realm object from a give chunk of JSON data.  It also does the reverse, given a Realm object, it can encode the corresponsing JSON representation.  A key feature of RealmCoder is that it allows for incremental updates to the Realm.  Decoding a JSON block with partial data for an object only overwrites the fields in the JSON.  Missing fields are not altered.
+A RealmCoder object allows you to easily decode a Realm object from a chunk of JSON data.  It also does the reverse, converting a Realm object to JSON data.  A key feature of RealmCoder is that it allows for incremental updates to the Realm.  Decoding a JSON block with partial data leaves the other attributes intact.
 
-RealmCoder works by inspected the schema for a Realm object type and using that metadata to map the attribute names and types to the JSON data.
+## Motivation
+
+Most iOS apps are clienst to some network server accessed via REST/JSON.  At Oak City Labs, we use Realm as a local database to cache info from the server, so the app can respond more quickly and still be useful offline.  (Sometimes we cache info for upload too.)  That means every app needs to take JSON data from the server and write it to the Realm database.  It is an excellent opportunity for a sharedy library.
+
+The tricky bit is that we need to update our Realm objects incrementally.  Sometimes we don't get all the data about an object from the server.  Imagine a master-detail view for restaurants.  In the master view, you have a list of restaurants.  Tap on a restaurant and you drill down into the restaurant's detail page.  
+
+We want the master list to be fast, so the server response includes summary info shown in the list, like the restaurant's name, but not the phone number.  When the info page loads, we request the detailed info include the phone number.  When you go back to the master list, you don't want a refresh of the summary data to clear the detailed info.
+
+Realm makes it simple to do these incremental updates, if we're careful.  Realm can do a partial update on any object that has a primary key as long as we have a dictionary that _only includes the updated values_.
+
+And that's what RealmCoder does.  By using the Realm schema for an object, we can match the attributes to the JSON keys and parse the data in a type safe way.  With the parsed data, we build an 'udpate' dictionary and apply it to the Realm database.  Everything happens at runtime and works automatically with any Realm object.  Using class variables on the model class, you can control things like name mapping, ignoring fields, etc.  If you have experience with Codable, RealmCoder should feel familar.
 
 ## Usage
 
