@@ -14,6 +14,7 @@ A RealmCoder object allows you to easily decode a Realm object from a chunk of J
   - [Ignored Attributes](#ignored-attributes)
   - [Raw JSON Substrings](#raw-json-substrings)
   - [REST Envelopes](#rest-envelopes)
+- [SwiftPM](#swiftpm)
 - [License](#license)
 - [About](#about)
 
@@ -157,6 +158,22 @@ For the example JSON here, you can define the envelopes like this:
     override class var realmListEnvelope: String? {
         return "users"
     }
+```
+
+## SwiftPM
+
+RealmCoder is available via the Swift Package Manager.  You can include RealmCoder in your project by adding this line to your `Package.swift` `dependecies` section:
+
+```swift
+    .package(url: "https://github.com/OakCityLabs/RealmCoder.git", from: "1.0.0")
+
+```
+
+Be sure to add it to your `targets` list as well:
+
+```swift
+    .target(name: "MyApp", dependencies: ["RealmCoder"]),
+
 ```
 
 ## License
