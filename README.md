@@ -15,6 +15,7 @@ A RealmCoder object allows you to easily decode a Realm object from a chunk of J
   - [Raw JSON Substrings](#raw-json-substrings)
   - [REST Envelopes](#rest-envelopes)
 - [SwiftPM](#swiftpm)
+- [Changelog](#changelog)
 - [License](#license)
 - [About](#about)
 
@@ -175,6 +176,10 @@ Be sure to add it to your `targets` list as well:
     .target(name: "MyApp", dependencies: ["RealmCoder"]),
 
 ```
+
+## Changelog
+
+See the [changelog.](CHANGELOG.md)
 
 ## License
 
