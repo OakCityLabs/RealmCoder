@@ -29,7 +29,7 @@ We want the master list to be fast, so the server response includes summary info
 
 If we're careful, Realm makes it simple to do these incremental updates.  Realm can do a partial update on any object that has a primary key as long as we have a dictionary that _only includes the updated values_.
 
-And that's what RealmCoder does.  By using the Realm schema for an object, we can match the attributes to the JSON keys and parse the data in a type safe way.  With the parsed data, we build an 'udpate' dictionary and apply it to the Realm database.  Everything happens at runtime and works automatically with any Realm object.  Using class variables on your Realm Object subclass, you can control things like name mapping, ignoring fields, etc.  If you have experience with Codable, RealmCoder should feel familar.
+And that's what RealmCoder does.  By using the Realm schema for an object, we can match the attributes to the JSON keys and parse the data in a type safe way.  With the parsed data, we build an 'update' dictionary and apply it to the Realm database.  Everything happens at runtime and works automatically with any Realm object.  Using class variables on your Realm Object subclass, you can control things like name mapping, ignoring fields, etc.  If you have experience with Codable, RealmCoder should feel familar.
 
 ## Usage
 
@@ -63,6 +63,29 @@ Encoding JSON is also simple.
 ```
 
 Note that these methods can throw.  Transactions with the underlying Realm can throw and those exceptions are propagated up.  Also, the RealmCoder can run into issues when the Realm object's schema doesn't match the given data.  For example, an object defines an attribute as an `Int` but the JSON value is a `String`.
+
+Pulling this all together, it's simple to declare a model and create a Realm object in the database from JSON data.
+
+```swift
+    // Declare the model
+    class User: Object {        
+        @objc dynamic var objId: String = ""
+        @objc dynamic var rank: Int = -1
+    }
+
+    // Create a RealmCoder    
+    let coder = RealmCoder(realm: realm)
+
+    // Decode some data and commit it to the realm
+    let user = try coder.decode(User.self, from: jsonData)
+    print("Decode User with objId: \(user.objId)")
+
+    // Make some modifications to the `user` object in 
+    // the usual Realm ways.
+
+    // Encode the object to send to the server
+    let modifiedData = try coder.encode(user)
+```
 
 ### Key Mapping
 
@@ -159,6 +182,74 @@ For the example JSON here, you can define the envelopes like this:
     override class var realmListEnvelope: String? {
         return "users"
     }
+```
+
+Combining all these options, we have fine grain control over the encoding / decoding process.
+
+```swift
+    // Create the model
+    class User: Object {
+        @objc dynamic var objId: String = ""
+        @objc dynamic var username: String = ""
+        @objc dynamic var firstName: String = ""
+        @objc dynamic var lastName: String = ""
+        @objc dynamic var address: String = ""
+        @objc dynamic var phone: String = ""
+        @objc dynamic var configJson: String = ""
+
+        // Declare the key name for the enclosing REST wrapper for a single object
+        override class var realmObjectEnvelope: String? {
+            return "user"
+        }
+        
+        // Declare the key name for the enclosing REST wrapper for a list of objects
+        override class var realmListEnvelope: String? {
+            return "users"
+        }
+
+        // Define the translation from attribute names to JSON key names:
+        //    `first_name` is mapped to `firstName`
+        //    `last_name` is mapped to `lastName` 
+        //    etc.
+        // We don't need to include username, address, or phone here because
+        // those attribute names match their JSON keys.
+        override class var realmCodableKeys: [String: String] {
+            return [
+                "firstName": "first_name",
+                "lastName": "last_name",
+                "objId": "id"
+                "configJson": "config_json"
+            ]
+        }
+
+        // Exclude these attributes when encoding data -- don't share the 
+        // address or phone number with anyone
+        override class var realmCodableIgnoredAttributes: [String] {
+            return ["address", "phone"]
+        }
+
+        // Don't parse the `configJson` subtree.  That's just an opaque 
+        // block of data we don't understand, but need to pass it to another
+        // object that does. 
+        override class var realmCodableRawJsonSubstrings: [String] {
+            return ["configJson"]
+        }
+
+    }
+
+    // Encode and decode just like before.  Start by creating a RealmCoder.
+    let coder = RealmCoder(realm: realm)
+
+    // Decode some data and commit it to the realm
+    let user = try coder.decode(User.self, from: jsonData)
+    print("Decode User with name: \(user.firstName) \(user.lastName)")
+
+    // Make some modifications to the `user` object in 
+    // the usual Realm ways.
+
+    // Encode the object to send to the server
+    // Remember, the encoding excludes address and phone number
+    let modifiedData = try coder.encode(user)
 ```
 
 ## SwiftPM
