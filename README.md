@@ -14,6 +14,7 @@ A RealmCoder object allows you to easily decode a Realm object from a chunk of J
   - [Ignored Attributes](#ignored-attributes)
   - [Raw JSON Substrings](#raw-json-substrings)
   - [REST Envelopes](#rest-envelopes)
+  - [Example](#example)
 - [SwiftPM](#swiftpm)
 - [Changelog](#changelog)
 - [License](#license)
@@ -183,6 +184,8 @@ For the example JSON here, you can define the envelopes like this:
         return "users"
     }
 ```
+
+### Example
 
 Combining all these options, we have fine grain control over the encoding / decoding process.
 
