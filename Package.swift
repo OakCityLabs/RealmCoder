@@ -28,7 +28,7 @@ let package = Package(
         // .package(url: "https://github.com/realm/SwiftLint.git", from: "0.31.0"),
         .package(
             url: "https://github.com/realm/realm-cocoa.git",
-            from: "3.17.3"
+            from: "4.4.1"
         )
     ],
     targets: [

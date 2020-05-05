@@ -257,7 +257,7 @@ Combining all these options, we have fine grain control over the encoding / deco
 
 ## SwiftPM
 
-RealmCoder is available via the Swift Package Manager.  You can include RealmCoder in your project by adding this line to your `Package.swift` `dependecies` section:
+RealmCoder is available via the Swift Package Manager.  You can include RealmCoder in your project by adding this line to your `Package.swift` `dependencies` section:
 
 ```swift
     .package(url: "https://github.com/OakCityLabs/RealmCoder.git", from: "1.0.0")
